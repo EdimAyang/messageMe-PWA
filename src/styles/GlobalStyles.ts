@@ -25,7 +25,8 @@ export const GlobalStyles = createGlobalStyle`
   button,
   input,
   textarea{
-    font-family:inherit;
+    font-family:${({ theme }) => theme.fonts.secondary}
+     color:${({ theme }) => theme.colors.primary};
   }
 
   img{

@@ -9,8 +9,8 @@ export const theme: DefaultTheme = {
     surface: "#1A1A22",
     card: "#23232D",
 
-    text: "#FFFFFF",
-    textSecondary: "rgba(255,255,255,0.7)",
+    text: "#000",
+    textSecondary: "#797C7B",
 
     border: "#2D2D39",
 
@@ -21,6 +21,7 @@ export const theme: DefaultTheme = {
 
   fonts: {
     primary: "Caros, sans-serif",
+    secondary: 'Circular Std',
   },
 
   typography: {
