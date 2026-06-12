@@ -1,8 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
-import GlobalLayout from "../layouts/global.layout";
-import AuthLayout from "../layouts/auth.layout";
-import PageLayout from "../layouts/page.layout";
-import Splash from "../pages/splash";
+
+//layouts
+import GlobalLayout from "@/layouts/global.layout";
+import AuthLayout from "@/layouts/auth.layout";
+import PageLayout from "@/layouts/page.layout";
+
+//onboarding
+import Splash from "@/pages/onboarding/splash";
+import OnboardingPage from "@/pages/onboarding/onboarding";
+import { PATHS } from "./paths";
+import LoginPage from "@/pages/auth/Login";
+import RegisterPage from "@/pages/auth/Register";
 
 export const router = createBrowserRouter([
   {
@@ -10,9 +18,22 @@ export const router = createBrowserRouter([
     element: <GlobalLayout />,
     children: [
       {
-        path: "/",
+        path: PATHS.ONBOARDING.SPLASH,
         element: <Splash />,
       },
+      {
+        path: PATHS.ONBOARDING.ONBOARDING,
+        element: <OnboardingPage />,
+      },
+      {
+        path: PATHS.AUTH.LOGIN,
+        element: <LoginPage />,
+      },
+      {
+        path: PATHS.AUTH.REGISTER,
+        element: <RegisterPage />,
+      },
+
       {
         id: "guard",
         element: <AuthLayout />,

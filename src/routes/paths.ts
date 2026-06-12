@@ -1,12 +1,15 @@
 export const PATHS = {
+  //onboarding
+  ONBOARDING: {
+    SPLASH: "@/page/onboarding/splash",
+    ONBOARDING: "@/page/onboarding/onboarding",
+  },
 
-    //onboarding
-    SPLASH: '/'
+  //auth
+  AUTH: {
+    LOGIN: "@/page/auth/login",
+    REGISTER: '/'
+  }
 
-    //auth
-   
-
-    //pages
-
-
-} as const
+  //pages
+} as const;
