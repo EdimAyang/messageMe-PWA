@@ -8,8 +8,11 @@ export const PATHS = {
   //auth
   AUTH: {
     LOGIN: "@/page/auth/login",
-    REGISTER: '/'
-  }
+    REGISTER: '@/page/auth/register'
+  },
 
   //pages
+  CHAT: {
+    HOME: "/",
+  }
 } as const;

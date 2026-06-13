@@ -11,6 +11,7 @@ import OnboardingPage from "@/pages/onboarding/onboarding";
 import { PATHS } from "./paths";
 import LoginPage from "@/pages/auth/Login";
 import RegisterPage from "@/pages/auth/Register";
+import HomePage from "@/pages/chat/home";
 
 export const router = createBrowserRouter([
   {
@@ -41,7 +42,12 @@ export const router = createBrowserRouter([
           {
             id: "page",
             element: <PageLayout />,
-            children: [],
+            children: [
+              {
+                path: PATHS.CHAT.HOME,
+                element: <HomePage />
+              }
+            ],
           },
         ],
       },

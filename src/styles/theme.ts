@@ -5,11 +5,11 @@ export const theme: DefaultTheme = {
     primary: "#FFFFFF",
     secondary: "#FA549C",
 
-    background: "#0F0F13",
+    background: "#000E08",
     surface: "#1A1A22",
     card: "#23232D",
 
-    text: "#000",
+    text: "#000E08",
     textSecondary: "#797C7B",
 
     border: "#2D2D39",

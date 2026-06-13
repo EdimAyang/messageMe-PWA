@@ -1,7 +1,14 @@
 import styled from "styled-components";
 import { ArrowLeftIcon } from "lucide-react";
 import { SectionDivider } from "@/lib/ui/divider";
-import { Input, InputGroup, Label, PasswordInput } from "@/lib/ui/input";
+import {
+  Input,
+  InputErrorMessage,
+  InputGroup,
+  InputWrapper,
+  Label,
+  PasswordInput,
+} from "@/lib/ui/input";
 import { Button } from "@/components/Button";
 import { Link } from "react-router-dom";
 import { PATHS } from "@/routes/paths";
@@ -19,7 +26,10 @@ const RegisterPage = () => {
         <LoginTextWrapper>
           <h3>Sign up with Email</h3>
 
-          <p>Get chatting with friends and family today, by signing up on messageMe</p>
+          <p>
+            Get chatting with friends and family today, by signing up on
+            messageMe
+          </p>
         </LoginTextWrapper>
 
         <RegistrationIconsWrapper>
@@ -38,22 +48,32 @@ const RegisterPage = () => {
 
         <StyledForm>
           <InputGroup>
+            <InputWrapper>
+              <Label htmlFor="email">Your Name</Label>
+              <Input type="text" />
+            </InputWrapper>
 
-            <Label htmlFor="email">Your Name</Label>
-            <Input type="text" />
+            <InputWrapper>
+              <Label htmlFor="email" $error={Boolean(true)}>
+                Your Email
+              </Label>
+              <Input type="email" $error={Boolean(true)} />
+              <InputErrorMessage>invalid email</InputErrorMessage>
+            </InputWrapper>
 
-            <Label htmlFor="email">Your Email</Label>
-            <Input type="email" $error={Boolean(true)}/>
+            <InputWrapper>
+              <Label htmlFor="password">Password</Label>
+              <PasswordInput />
+            </InputWrapper>
 
-            <Label htmlFor="password">Password</Label>
-            <PasswordInput  />
-
-            <Label htmlFor="confirm">Confirm password</Label>
-            <PasswordInput />
+            <InputWrapper>
+              <Label htmlFor="confirm">Confirm password</Label>
+              <PasswordInput />
+            </InputWrapper>
           </InputGroup>
 
           <ButtonWrapper>
-            <Button fullWidth variant="secondary" children="Log in"/>
+            <Button fullWidth variant="secondary" children="Log in" />
           </ButtonWrapper>
         </StyledForm>
       </StyledRegisterWrapper>
@@ -74,7 +94,7 @@ const StyledRegisterWrapper = styled.div`
 const BackButtonWrapper = styled.div`
   width: 100%;
   height: auto;
-  margin-bottom:2rem;
+  margin-bottom: 2rem;
 `;
 
 const LoginTextWrapper = styled.div`
@@ -119,6 +139,4 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
- 
 `;
-
