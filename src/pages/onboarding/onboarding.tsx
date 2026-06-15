@@ -47,7 +47,7 @@ export default OnboardingPage;
 const StyledOnboarding = styled.div`
   background: ${({ theme }) => theme.colors.background};
   width: 100%;
-  height: auto;
+  height: 100vh;
   background-image: url("/Ellipse1.png");
   background-position: top;
   background-size:contain;
