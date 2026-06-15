@@ -1,7 +1,13 @@
 import styled from "styled-components";
 import { ArrowLeftIcon } from "lucide-react";
 import { SectionDivider } from "@/lib/ui/divider";
-import { Input, InputGroup, Label, PasswordInput } from "@/lib/ui/input";
+import {
+  Input,
+  InputGroup,
+  InputWrapper,
+  Label,
+  PasswordInput,
+} from "@/lib/ui/input";
 import { Button } from "@/components/Button";
 import { Link } from "react-router-dom";
 import { PATHS } from "@/routes/paths";
@@ -38,12 +44,15 @@ const LoginPage = () => {
 
         <StyledForm>
           <InputGroup>
-            <Label htmlFor="email">Your Email</Label>
-            <Input placeholder="" type="email" />
+            <InputWrapper>
+              <Label htmlFor="email">Your Email</Label>
+              <Input placeholder="" type="email" />
+            </InputWrapper>
 
-            <Label htmlFor="password">Password</Label>
-
-            <PasswordInput placeholder="" />
+            <InputWrapper>
+              <Label htmlFor="password">Password</Label>
+              <PasswordInput placeholder="" />
+            </InputWrapper>
           </InputGroup>
 
           <ButtonWrapper>

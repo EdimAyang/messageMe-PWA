@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-
+import { PATHS } from "./paths";
 //layouts
 import GlobalLayout from "@/layouts/global.layout";
 import AuthLayout from "@/layouts/auth.layout";
@@ -8,9 +8,13 @@ import PageLayout from "@/layouts/page.layout";
 //onboarding
 import Splash from "@/pages/onboarding/splash";
 import OnboardingPage from "@/pages/onboarding/onboarding";
-import { PATHS } from "./paths";
 import LoginPage from "@/pages/auth/Login";
 import RegisterPage from "@/pages/auth/Register";
+import HomePage from "@/pages/chat/home";
+import MessagePage from "@/pages/chat/message";
+import CallPage from "@/pages/calls/home";
+import ContactsPage from "@/pages/contacts/home";
+import SettingsPage from "@/pages/settings/home";
 
 export const router = createBrowserRouter([
   {
@@ -41,7 +45,28 @@ export const router = createBrowserRouter([
           {
             id: "page",
             element: <PageLayout />,
-            children: [],
+            children: [
+              {
+                path: PATHS.CHAT.HOME,
+                element: <HomePage />
+              },
+              {
+                path: PATHS.CHAT.MESSAGE,
+                element: <MessagePage />
+              },
+              {
+                path: PATHS.CALLS.LOGS,
+                element: <CallPage />
+              },
+              {
+                path: PATHS.CONTACTS.CONTACTlIST,
+                element: <ContactsPage />
+              },
+              {
+                path: PATHS.SETTINGS.SETTING,
+                element: <SettingsPage />
+              }
+            ],
           },
         ],
       },

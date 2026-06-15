@@ -8,8 +8,27 @@ export const PATHS = {
   //auth
   AUTH: {
     LOGIN: "@/page/auth/login",
-    REGISTER: '/'
-  }
+    REGISTER: "@/page/auth/register",
+  },
 
   //pages
+  CHAT: {
+    HOME: "@/page/chat/home",
+    MESSAGE: "/",
+  },
+
+  //calls
+  CALLS: {
+    LOGS: "@/page/calls/home",
+  },
+
+  //CONTACTS
+  CONTACTS: {
+    CONTACTlIST: "@/page/contacts/home",
+  },
+
+  //SETTINGS
+  SETTINGS: {
+    SETTING: "@/page/settings/home",
+  },
 } as const;

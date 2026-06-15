@@ -2,30 +2,40 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { EyeClosed, EyeIcon } from "lucide-react";
 
+interface InputProps {
+  $error?: boolean;
+}
+
 export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.sm};
 `;
 
-export const Label = styled.label`
-  color: ${({ theme }) => theme.colors.secondary};
+export const Label = styled.label<InputProps>`
+  color: ${({ theme, $error }) =>
+    $error ? theme.colors.error : theme.colors.secondary};
   font-size: ${({ theme }) => theme.typography.bodySm.size};
   font-weight: 600;
 `;
 
-interface InputProps {
-  $error?: boolean;
-}
-
+export const InputWrapper = styled.div`
+  height: auto;
+  width: 100%;
+  margin-bottom: 1rem;
+`;
+export const InputErrorMessage = styled.p`
+  margin-top: 0.5rem;
+  color: ${({ theme }) => theme.colors.error};
+  text-align:end;
+`;
 export const Input = styled.input<InputProps>`
   width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 1px solid
+  border-bottom: 1.5px solid
     ${({ theme, $error }) =>
       $error ? theme.colors.error : theme.colors.textSecondary};
-  margin-bottom: 1rem;
 
   padding: 12px 0;
 
