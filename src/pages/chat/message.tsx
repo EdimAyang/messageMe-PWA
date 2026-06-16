@@ -7,6 +7,7 @@ import {
   PaperclipIcon,
   MicIcon,
   SendHorizontalIcon,
+  ArrowBigDownDashIcon,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PATHS } from "@/routes/paths";
@@ -30,6 +31,9 @@ const messages: Message[] = [
     content: "Hey 👋",
     createdAt: "2026-05-20T08:15:00Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "2",
@@ -39,6 +43,9 @@ const messages: Message[] = [
     content: "How's the MessageMe project going?",
     createdAt: "2026-05-20T08:15:20Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "3",
@@ -48,6 +55,9 @@ const messages: Message[] = [
     content: "Morning ☀️",
     createdAt: "2026-05-20T08:18:00Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "4",
@@ -57,6 +67,9 @@ const messages: Message[] = [
     content: "Still planning the architecture.",
     createdAt: "2026-05-20T08:18:40Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "5",
@@ -66,6 +79,9 @@ const messages: Message[] = [
     content: "Smart move 👍",
     createdAt: "2026-05-20T08:20:00Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
 
   {
@@ -76,6 +92,9 @@ const messages: Message[] = [
     content: "Did you decide on Socket.IO or native WebSockets?",
     createdAt: "2026-05-25T15:05:00Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "7",
@@ -85,6 +104,9 @@ const messages: Message[] = [
     content: "Native WebSockets 🚀",
     createdAt: "2026-05-25T15:12:00Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "8",
@@ -94,6 +116,9 @@ const messages: Message[] = [
     content: "I want to understand the protocol better.",
     createdAt: "2026-05-25T15:12:20Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "9",
@@ -103,6 +128,9 @@ const messages: Message[] = [
     content: "Respect 😎",
     createdAt: "2026-05-25T15:15:00Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
 
   {
@@ -113,6 +141,9 @@ const messages: Message[] = [
     content: "Authentication is done 🎉",
     createdAt: "2026-06-01T10:00:00Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "11",
@@ -122,6 +153,9 @@ const messages: Message[] = [
     content: "Using Zustand for state management.",
     createdAt: "2026-06-01T10:00:30Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "12",
@@ -131,6 +165,9 @@ const messages: Message[] = [
     content: "Nice choice.",
     createdAt: "2026-06-01T10:02:00Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "13",
@@ -140,6 +177,9 @@ const messages: Message[] = [
     content: "Persist middleware?",
     createdAt: "2026-06-01T10:02:20Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "14",
@@ -149,6 +189,9 @@ const messages: Message[] = [
     content: "Yep. Token storage survives refreshes.",
     createdAt: "2026-06-01T10:04:00Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
 
   {
@@ -159,6 +202,9 @@ const messages: Message[] = [
     content: "How's the UI coming along?",
     createdAt: "2026-06-07T18:30:00Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "16",
@@ -168,6 +214,9 @@ const messages: Message[] = [
     content: "Finished onboarding and splash screen.",
     createdAt: "2026-06-07T18:45:00Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "17",
@@ -177,6 +226,9 @@ const messages: Message[] = [
     content: "Currently building the chat list screen.",
     createdAt: "2026-06-07T18:45:40Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "18",
@@ -186,6 +238,9 @@ const messages: Message[] = [
     content: "The swipe-to-delete feature?",
     createdAt: "2026-06-07T18:50:00Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "19",
@@ -195,6 +250,9 @@ const messages: Message[] = [
     content: "Exactly 😂",
     createdAt: "2026-06-07T18:52:00Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
 
   {
@@ -205,6 +263,9 @@ const messages: Message[] = [
     content: "Did you get it working?",
     createdAt: "2026-06-12T13:20:00Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "21",
@@ -214,6 +275,9 @@ const messages: Message[] = [
     content: "After fighting CSS for 2 hours 😭",
     createdAt: "2026-06-12T13:25:00Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "22",
@@ -223,6 +287,9 @@ const messages: Message[] = [
     content: "Finally got the drag gesture working.",
     createdAt: "2026-06-12T13:25:40Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "23",
@@ -232,6 +299,9 @@ const messages: Message[] = [
     content: "That's software development in one sentence 🤣",
     createdAt: "2026-06-12T13:28:00Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
 
   {
@@ -242,6 +312,9 @@ const messages: Message[] = [
     content: "What are you working on today?",
     createdAt: "2026-06-14T09:25:00Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "25",
@@ -251,6 +324,9 @@ const messages: Message[] = [
     content: "Conversation screen.",
     createdAt: "2026-06-14T09:26:00Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "26",
@@ -260,6 +336,9 @@ const messages: Message[] = [
     content: "Grouping messages, timestamps and date dividers.",
     createdAt: "2026-06-14T09:26:20Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "27",
@@ -269,6 +348,9 @@ const messages: Message[] = [
     content: "Ahh, the details users notice immediately 👌",
     createdAt: "2026-06-14T09:28:00Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "28",
@@ -278,6 +360,9 @@ const messages: Message[] = [
     content: "Exactly. I'm trying to make it feel like WhatsApp.",
     createdAt: "2026-06-14T09:30:00Z",
     isMine: true,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "29",
@@ -287,6 +372,9 @@ const messages: Message[] = [
     content: "You're getting close 🔥",
     createdAt: "2026-06-14T09:35:00Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
   {
     id: "30",
@@ -296,25 +384,20 @@ const messages: Message[] = [
     content: "Can't wait to test the first beta 🚀",
     createdAt: "2026-06-14T09:35:30Z",
     isMine: false,
+    type: "text",
+    audioUrl: "",
+    duration: 12,
   },
-  {
+   {
     id: "31",
     senderId: "john",
     senderName: "John Abraham",
     senderAvatar: "/images/messagemsg.png",
-    content: "Can't wait to test the first beta 🚀",
     createdAt: "2026-06-14T09:35:30Z",
-    isMine: false,
-  },
-
-  {
-    id: "32",
-    senderId: "john",
-    senderName: "John Abraham",
-    senderAvatar: "/images/messagemsg.png",
-    content: "Can't wait to test the first beta 🚀",
-    createdAt: "2026-06-14T09:35:30Z",
-    isMine: false,
+    isMine: true,
+    type: "audio",
+    audioUrl: "/audio/audioTest.ogg",
+    duration: 12,
   },
 ];
 
@@ -373,7 +456,7 @@ const MessagePage = () => {
   //         isMine: false,
   //       },
   //     ]);
-  //   }, 1000);
+  //   }, 4000);
 
   //   return () => clearInterval(interval);
   // }, []);
@@ -425,6 +508,7 @@ const MessagePage = () => {
                   showSenderInfo={shouldShowSenderInfo(
                     message,
                     previousMessage,
+                    
                   )}
                 />
               </Fragment>
@@ -433,10 +517,10 @@ const MessagePage = () => {
           <div ref={bottomRef} />
         </MessagesContainer>
 
-        {unreadCount > 0 && !isAtBottom && (
+        {unreadCount > 0 && <NewMessageBadge>{unreadCount}</NewMessageBadge>}
+        {!isAtBottom && (
           <NewMessageButton onClick={scrollToBottom}>
-            ↓ {unreadCount} New Message
-            {unreadCount > 1 ? "s" : ""}
+            <ArrowBigDownDashIcon size={24} />
           </NewMessageButton>
         )}
 
@@ -526,26 +610,44 @@ const TextArea = styled.textarea`
   }
 `;
 
+const NewMessageBadge = styled.div`
+  position: fixed;
+  padding: 9px;
+  border-radius: 50%;
+  color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.secondary};
+  box-shadow: ${({ theme }) => theme.shadows.md};
+
+  z-index: 999;
+  right: 13px;
+
+  bottom: 150px;
+
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  height: auto;
+`;
 const NewMessageButton = styled.button`
   position: fixed;
 
-  left: 50%;
-  transform: translateX(-50%);
+  right: 10px;
 
   bottom: 100px;
 
   border: none;
   outline: none;
 
-  padding: 12px 16px;
+  padding: 5px;
 
-  border-radius: 999px;
+  border-radius: 50%;
 
   background-color: ${({ theme }) => theme.colors.secondary};
 
   color: ${({ theme }) => theme.colors.primary};
-
-  font-weight: 600;
+  display: flex;
+  align-items: center;
 
   cursor: pointer;
 

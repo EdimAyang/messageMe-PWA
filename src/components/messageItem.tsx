@@ -1,6 +1,7 @@
 import type { Message } from "@/types";
 import styled from "styled-components";
 import { formatTime } from "@/utils/dates";
+import { AudioMessage } from "@/components/AudioMsg";
 
 interface MessageItemProps {
   message: Message;
@@ -8,17 +9,16 @@ interface MessageItemProps {
   showSenderInfo: boolean;
 }
 
-export const MessageItem = ({
-  message,
-  showTimeStamp,
-  showSenderInfo,
-}: MessageItemProps) => {
+export const MessageItem = ({ message }: MessageItemProps) => {
+  if (message.type === "audio") {
+    return <AudioMessage message={message} />;
+  }
+
   if (message.isMine) {
     return (
       <OutgoingMessage>
         <Bubble $isMine>
           {message.content}
-
           <TimestampInside>{formatTime(message.createdAt)}</TimestampInside>
         </Bubble>
       </OutgoingMessage>
@@ -27,17 +27,7 @@ export const MessageItem = ({
 
   return (
     <IncomingMessage>
-      {/* {showSenderInfo ? (
-        <AvatarSmall>
-          <img src={message.senderAvatar} alt={message.senderName} />
-        </AvatarSmall>
-      ) : (
-        <AvatarSpacer />
-      )} */}
-
       <IncomingContent>
-        {/* {showSenderInfo && <SenderName>{message.senderName}</SenderName>} */}
-
         <Bubble>
           {message.content}
           <TimestampInside>{formatTime(message.createdAt)}</TimestampInside>
@@ -46,6 +36,7 @@ export const MessageItem = ({
     </IncomingMessage>
   );
 };
+
 
 // const AvatarSpacer = styled.div`
 //   width: 50px;
@@ -64,6 +55,8 @@ export const MessageItem = ({
 //     object-fit: cover;
 //   }
 // `;
+
+
 
 const Bubble = styled.div<{
   $isMine?: boolean;
@@ -117,7 +110,7 @@ const IncomingContent = styled.div`
 //   margin: 0;
 // `;
 
-// 
+//
 
 const TimestampInside = styled.span<{ $isMine?: boolean }>`
   display: block;

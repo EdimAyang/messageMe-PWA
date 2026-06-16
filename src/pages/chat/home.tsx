@@ -173,6 +173,7 @@ const BottomNav = styled.nav`
   bottom: 0;
   left: 0;
   z-index: 3;
+  box-shadow: ${({ theme }) => theme.shadows.md};
 `;
 
 const StyledNavLink = styled(NavLink)`
