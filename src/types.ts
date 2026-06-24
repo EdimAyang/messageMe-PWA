@@ -3,8 +3,13 @@ export interface Message {
   senderId: string;
   senderName: string;
   senderAvatar: string;
-  content: string;
   isMine: boolean;
-  createdAt:string;
-  
+  isGroup?:boolean;
+  createdAt: string;
+
+  type: "text" | "audio";
+
+  content?: string;
+  audioUrl?: string;
+  duration?: number;
 }

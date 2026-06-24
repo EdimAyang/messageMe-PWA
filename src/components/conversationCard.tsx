@@ -43,7 +43,7 @@ const StyledChatItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.background};
   z-index: 2;
   position: relative;
   padding-inline: 10px;
@@ -61,7 +61,7 @@ const LeftContentText = styled.div`
   flex-direction: column;
   gap: 0.2rem;
 
-  p {
+  p, h3 {
     color: ${({ theme }) => theme.colors.textSecondary};
   }
 `;

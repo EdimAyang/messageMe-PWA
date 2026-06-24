@@ -10,7 +10,7 @@ import { SwipeableItem } from "@/lib/ui/swipable";
 import { ConversationCard } from "@/components/conversationCard";
 import { PATHS } from "@/routes/paths";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Fragment } from "react/jsx-runtime";
+
 
 const Conversations = [
   {
@@ -55,6 +55,34 @@ const Conversations = [
     time: "2 min ago",
     unreadMsg: "5",
   },
+  {
+    image: "/images/headerimg.png",
+    name: "Nuel Jackson",
+    lastMsg: "How are doing?",
+    time: "2 min ago",
+    unreadMsg: "5",
+  },
+  {
+    image: "/images/headerimg.png",
+    name: "Nuel Jackson",
+    lastMsg: "How are doing?",
+    time: "2 min ago",
+    unreadMsg: "5",
+  },
+  {
+    image: "/images/headerimg.png",
+    name: "Nuel Jackson",
+    lastMsg: "How are doing?",
+    time: "2 min ago",
+    unreadMsg: "5",
+  },
+  {
+    image: "/images/headerimg.png",
+    name: "Nuel Jackson",
+    lastMsg: "How are doing?",
+    time: "22 min ago",
+    unreadMsg: "5",
+  },
 ];
 
 const Navigation = [
@@ -97,7 +125,7 @@ const HomePage = () => {
           </Avatar>
         </Header>
 
-        <StatusUpdateWrapper>
+        {/* <StatusUpdateWrapper>
           <StatusUpdate>
             <StatusAvatar>
               <img src="/images/headerimg.png" alt="user image" />
@@ -127,7 +155,7 @@ const HomePage = () => {
               <img src="/images/headerimg.png" alt="user image" />
             </StatusAvatar>
           </StatusUpdate>
-        </StatusUpdateWrapper>
+        </StatusUpdateWrapper> */}
 
         <StyledChatList>
           {Conversations.map((c, i) => (
@@ -162,17 +190,18 @@ export default HomePage;
 
 const BottomNav = styled.nav`
   width: 100%;
-  height: 13%;
+  height: 11%;
   padding-inline: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.background};
   padding-block: 15px;
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 3;
+  box-shadow: ${({ theme }) => theme.shadows.md};
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -202,7 +231,7 @@ const StyledHomePage = styled.div`
 
 const Header = styled.div`
   width: 100%;
-  height: auto;
+  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -210,16 +239,21 @@ const Header = styled.div`
   top: 2rem;
   background-color: none;
   color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.background};
   padding-inline: 2rem;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:30;
 `;
 
 const SearchWrapper = styled.div`
   border-radius: 50%;
   border: 1px solid #ffffff;
   background: transparent;
-  width: auto;
-  height: auto;
-  padding: 10px;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -243,42 +277,44 @@ const Avatar = styled.div`
   }
 `;
 
-const StatusAvatar = styled.div`
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+// const StatusAvatar = styled.div`
+//   width: 70px;
+//   height: 70px;
+//   border-radius: 50%;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-const StatusUpdateWrapper = styled.div`
-  width: 100%;
-  height: auto;
-  padding-left: 4rem;
-  overflow: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-`;
+//   img {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//   }
+// `;
+// const StatusUpdateWrapper = styled.div`
+//   width: 100%;
+//   height: auto;
+//   padding-left: 4rem;
+//   overflow: auto;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 1rem;
+//   margin-top: 4rem;
+//   margin-bottom: 2rem;
+//   scrollbar-width: none; /* Firefox */
+//   -ms-overflow-style: none; /* IE and old Edge */
+// `;
 
-const StatusUpdate = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 1rem;
-`;
+// const StatusUpdate = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   gap: 1rem;
+// `;
 
 const StyledChatList = styled.section`
   width: 100%;
-  height: 60%;
-  background-color: ${({ theme }) => theme.colors.primary};
+  height: 100%;
+  background-color:${({ theme }) => theme.colors.background} ;
   padding-inline: 20px;
   display: flex;
   justify-content: center;
@@ -287,8 +323,12 @@ const StyledChatList = styled.section`
   gap: 2rem;
   border-radius: 50px 50px 0 0;
   overflow: auto;
-  padding-bottom: 4rem;
-  padding-top: 15rem;
+  padding-bottom: 10rem;
+  padding-top: 20rem;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and old Edge */
+ 
+
 `;
 
 const OnlineBadge = styled.span`
