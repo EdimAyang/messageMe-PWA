@@ -4,6 +4,7 @@ export interface Message {
   senderName: string;
   senderAvatar: string;
   isMine: boolean;
+  isGroup?:boolean;
   createdAt: string;
 
   type: "text" | "audio";

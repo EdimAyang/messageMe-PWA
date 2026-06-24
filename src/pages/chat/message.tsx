@@ -21,6 +21,9 @@ import {
 import { formatMessageDate } from "@/utils/dates";
 import { Fragment } from "react/jsx-runtime";
 import { useRef, useEffect, useState } from "react";
+import { MessageComposer } from "@/components/messageComposer";
+import { useNewMsgTrigger } from "@/hooks/useNewMsgTrigger";
+import AudioRecording from "@/components/AudioRecorder";
 
 const messages: Message[] = [
   {
@@ -388,13 +391,14 @@ const messages: Message[] = [
     audioUrl: "",
     duration: 12,
   },
-   {
+  {
     id: "31",
     senderId: "john",
     senderName: "John Abraham",
     senderAvatar: "/images/messagemsg.png",
     createdAt: "2026-06-14T09:35:30Z",
     isMine: true,
+    isGroup: true,
     type: "audio",
     audioUrl: "/audio/audioTest.ogg",
     duration: 12,
@@ -402,40 +406,18 @@ const messages: Message[] = [
 ];
 
 const MessagePage = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
-  const [isAtBottom, setIsAtBottom] = useState(true);
-  const [unreadCount, setUnreadCount] = useState(0);
   const [textContent, setTextContent] = useState("");
+  const [isRecording, setIsRecording] = useState(false);
   // const [messages, setMessages] = useState<Message[]>([]);
 
-  const handleScroll = () => {
-    const el = containerRef.current;
-
-    if (!el) return;
-
-    const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 80;
-
-    setIsAtBottom(atBottom);
-
-    if (atBottom) {
-      setUnreadCount(0);
-    }
-  };
-
-  const scrollToBottom = () => {
-    bottomRef.current?.scrollIntoView({
-      behavior: "smooth",
-    });
-  };
-
-  useEffect(() => {
-    handleScroll();
-    if (isAtBottom) {
-    } else {
-      setUnreadCount((count) => count + 1);
-    }
-  }, [messages]);
+  const {
+    unreadCount,
+    isAtBottom,
+    scrollToBottom,
+    handleScroll,
+    bottomRef,
+    containerRef,
+  } = useNewMsgTrigger(messages);
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.target.style.height = "auto";
@@ -451,6 +433,7 @@ const MessagePage = () => {
   //         senderId: "john",
   //         senderName: "John Abraham",
   //         senderAvatar: "/images/messagemsg.png",
+  //         type: "text",
   //         content: `Random message ${Date.now()}`,
   //         createdAt: new Date().toISOString(),
   //         isMine: false,
@@ -461,12 +444,32 @@ const MessagePage = () => {
   //   return () => clearInterval(interval);
   // }, []);
 
+  const handleAudioMessage = (
+    blob: Blob,
+    audioUrl: string,
+    duration: number,
+  ) => {
+    const newMessage: Message = {
+      id: crypto.randomUUID(),
+      senderId: "me",
+      senderName: "Me",
+      senderAvatar: "",
+      type: "audio",
+      audioUrl,
+      duration,
+      createdAt: new Date().toISOString(),
+      isMine: true,
+    };
+
+    setMessages((prev) => [...prev, newMessage]);
+  };
+
   return (
     <>
       <StyledMessagePage>
         <ConversationHeader>
           <Link to={PATHS.CHAT.HOME}>
-            <ArrowLeftIcon size={24} />
+            <ArrowLeftIcon size={24} className="icon" stroke="#ffff" />
           </Link>
 
           <LeftContentWrapper>
@@ -483,8 +486,8 @@ const MessagePage = () => {
             </LeftContent>
 
             <RightContent>
-              <PhoneIcon size={24} />
-              <VideoIcon size={24} />
+              <PhoneIcon size={24} stroke="#ffff" />
+              <VideoIcon size={24} stroke="#ffff" />
             </RightContent>
           </LeftContentWrapper>
         </ConversationHeader>
@@ -508,7 +511,6 @@ const MessagePage = () => {
                   showSenderInfo={shouldShowSenderInfo(
                     message,
                     previousMessage,
-                    
                   )}
                 />
               </Fragment>
@@ -523,26 +525,21 @@ const MessagePage = () => {
             <ArrowBigDownDashIcon size={24} />
           </NewMessageButton>
         )}
-
-        <MessageComposer>
-          <PaperclipIcon size={24} />{" "}
-          <TextArea
-            rows={1}
-            placeholder="Write your message"
-            onInput={() => handleInput}
-            onChange={(e) => setTextContent(e.target.value)}
+        {isRecording ? (
+          <AudioRecording
+            onClose={() => setIsRecording(false)}
+            onSend={handleAudioMessage}
+            isRecording={isRecording}
+            setIsRecording={setIsRecording}
           />
-          {textContent ? (
-            <SendButton>
-              <SendHorizontalIcon size={24} />
-            </SendButton>
-          ) : (
-            <MediaLeftContent>
-              <CameraIcon size={24} />
-              <MicIcon size={24} />
-            </MediaLeftContent>
-          )}
-        </MessageComposer>
+        ) : (
+          <MessageComposer
+            textContent={textContent}
+            handleInput={handleInput}
+            setTextContent={setTextContent}
+            onStartRecording={setIsRecording}
+          />
+        )}
       </StyledMessagePage>
     </>
   );
@@ -550,69 +547,9 @@ const MessagePage = () => {
 
 export default MessagePage;
 
-const SendButton = styled.button`
-  border-radius: 50%;
-  padding: 10px;
-  background-color: ${({ theme }) => theme.colors.secondary};
-
-  color: ${({ theme }) => theme.colors.primary};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-`;
-const MediaLeftContent = styled.div`
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-`;
-const MessageComposer = styled.div`
-  position: fixed;
-  bottom: 0;
-  height: 90px;
-  width: 100%;
-  left: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-
-  background: ${({ theme }) => theme.colors.primary};
-  box-shadow: ${({ theme }) => theme.shadows.md};
-  padding-inline: 20px;
-`;
-
-const TextArea = styled.textarea`
-  flex: 1;
-
-  border: none;
-  outline: none;
-  resize: none;
-
-  background: transparent;
-
-  font-size: 16px;
-
-  min-height: 24px;
-  max-height: 120px;
-
-  overflow-y: auto;
-
-  font-family: inherit;
-  padding: 12px;
-  background-color: #f3f6f6;
-  border-radius: 15px;
-  &::placeholder {
-    font-size: ${({ theme }) => theme.typography.bodySm.size};
-    padding-top: 1.5px;
-  }
-`;
-
 const NewMessageBadge = styled.div`
   position: fixed;
-  padding: 9px;
+  padding: 5px;
   border-radius: 50%;
   color: ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme }) => theme.colors.secondary};
@@ -627,7 +564,9 @@ const NewMessageBadge = styled.div`
   outline: none;
   display: flex;
   align-items: center;
-  height: auto;
+  height: 25px;
+  width: 25px;
+  justify-content: center;
 `;
 const NewMessageButton = styled.button`
   position: fixed;
@@ -661,7 +600,7 @@ const DateDivider = styled.div`
   margin: 2rem;
   span {
     color: ${({ theme }) => theme.colors.text};
-    background-color: ${({ theme }) => theme.colors.message};
+    background-color: ${({ theme }) => theme.colors.textSecondary};
     padding: 7px;
     border-radius: 8px;
     font-weight: 700;
@@ -678,6 +617,8 @@ const MessagesContainer = styled.div`
   flex-direction: column;
 
   overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and old Edge */
 `;
 
 const StyledMessagePage = styled.div`
@@ -686,6 +627,7 @@ const StyledMessagePage = styled.div`
   padding-inline: 20px;
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 const ConversationHeader = styled.div`
@@ -702,7 +644,7 @@ const ConversationHeader = styled.div`
   padding-block: 10px;
   padding-inline: 20px;
   height: 90px;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 const LeftContentWrapper = styled.div`
@@ -737,7 +679,8 @@ const LeftContentText = styled.div`
   flex-direction: column;
   gap: 0.2rem;
 
-  p {
+  p,
+  h3 {
     color: ${({ theme }) => theme.colors.textSecondary};
   }
 `;
