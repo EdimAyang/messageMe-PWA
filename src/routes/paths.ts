@@ -1,34 +1,40 @@
 export const PATHS = {
   //onboarding
   ONBOARDING: {
-    SPLASH: "@/page/onboarding/splash",
-    ONBOARDING: "@/page/onboarding/onboarding",
+    SPLASH: "/page/onboarding/splash",
+    ONBOARDING: "/page/onboarding/onboarding",
   },
 
   //auth
   AUTH: {
-    LOGIN: "@/page/auth/login",
-    REGISTER: "@/page/auth/register",
+    LOGIN: "/page/auth/login",
+    REGISTER: "/page/auth/register",
   },
 
   //pages
   CHAT: {
-    HOME: "@/page/chat/home",
-    MESSAGE: "/",
+    HOME: "/page/chat",
+    MESSAGE: "/page/chat/message",
+  },
+
+  //search
+
+  SEARCH: {
+    SEARCH: "/"
   },
 
   //calls
   CALLS: {
-    LOGS: "@/page/calls/home",
+    LOGS: "/page/calls",
   },
 
   //CONTACTS
   CONTACTS: {
-    CONTACTlIST: "@/page/contacts/home",
+    CONTACTlIST: "/page/contacts",
   },
 
   //SETTINGS
   SETTINGS: {
-    SETTING: "@/page/settings/home",
+    SETTING: "/page/settings",
   },
 } as const;

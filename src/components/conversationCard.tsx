@@ -4,8 +4,8 @@ interface Props {
   image: string;
   userName: string;
   lastMsg: string;
-  time: string;
-  unreadMsg: string;
+  time?: string;
+  unreadMsg?: string;
 }
 export const ConversationCard: React.FC<Props> = ({
   image,
@@ -23,15 +23,19 @@ export const ConversationCard: React.FC<Props> = ({
             <OnlineBadge />
           </Avatar>
           <LeftContentText>
-            <h3>{userName}</h3>
+            <h4>{userName}</h4>
             <p>{lastMsg}</p>
           </LeftContentText>
         </LeftContent>
 
-        <RightContent>
-          <p>{time}</p>
-          <MessageBadge>{unreadMsg}</MessageBadge>
-        </RightContent>
+        {time && unreadMsg ? (
+          <RightContent>
+            <p>{time}</p>
+            <MessageBadge>{unreadMsg}</MessageBadge>
+          </RightContent>
+        ) : (
+          ""
+        )}
       </StyledChatItem>
     </>
   );
@@ -43,7 +47,7 @@ const StyledChatItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.primary};
   z-index: 2;
   position: relative;
   padding-inline: 10px;
@@ -61,8 +65,14 @@ const LeftContentText = styled.div`
   flex-direction: column;
   gap: 0.2rem;
 
-  p, h3 {
+  h4 {
+    color: ${({ theme }) => theme.colors.background};
+    margin-bottom:0px;
+  }
+
+  p {
     color: ${({ theme }) => theme.colors.textSecondary};
+    font-size: ${({ theme }) => theme.typography.bodySm.size}
   }
 `;
 
@@ -75,6 +85,7 @@ const RightContent = styled.div`
   flex-direction: column;
   p {
     color: ${({ theme }) => theme.colors.textSecondary};
+    font-size: ${({ theme }) => theme.typography.bodySm.size}
   }
   gap: 0.5rem;
 `;

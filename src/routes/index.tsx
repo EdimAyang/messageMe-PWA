@@ -8,13 +8,16 @@ import PageLayout from "@/layouts/page.layout";
 //onboarding
 import Splash from "@/pages/onboarding/splash";
 import OnboardingPage from "@/pages/onboarding/onboarding";
+
+//pages
 import LoginPage from "@/pages/auth/Login";
 import RegisterPage from "@/pages/auth/Register";
-import HomePage from "@/pages/chat/home";
+import HomePage from "@/pages/chat";
 import MessagePage from "@/pages/chat/message";
 import CallPage from "@/pages/calls/home";
 import ContactsPage from "@/pages/contacts/home";
 import SettingsPage from "@/pages/settings/home";
+import SearchPage  from "@/pages/search"
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +68,10 @@ export const router = createBrowserRouter([
               {
                 path: PATHS.SETTINGS.SETTING,
                 element: <SettingsPage />
+              },
+               {
+                path: PATHS.SEARCH.SEARCH,
+                element: <SearchPage />
               }
             ],
           },

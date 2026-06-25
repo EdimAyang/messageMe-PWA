@@ -1,7 +1,7 @@
 import type { ChangeEvent, Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 import {
-  CameraIcon,
+  // CameraIcon,
   PaperclipIcon,
   MicIcon,
   SendHorizontalIcon,
@@ -24,7 +24,7 @@ export const MessageComposer: React.FC<Props> = ({
 
   return (
     <Composer>
-      <PaperclipIcon size={24}  stroke="#ffff" />{" "}
+      <PaperclipIcon size={24}  stroke="#000" />{" "}
       <TextArea
         rows={1}
         placeholder="Write your message"
@@ -37,11 +37,11 @@ export const MessageComposer: React.FC<Props> = ({
         </SendButton>
       ) : (
         <MediaLeftContent>
-          <CameraIcon size={24} stroke="#ffff" />
+          {/* <CameraIcon size={24} stroke="#000" /> */}
           <MicButton
           onClick={()=>onStartRecording(true)}
           >
-            <MicIcon size={24} stroke="#ffff" />
+            <MicIcon size={24} stroke="#000" />
           </MicButton>
         </MediaLeftContent>
       )}
@@ -86,7 +86,7 @@ const Composer = styled.div`
   justify-content: space-between;
   gap: 12px;
 
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.primary};
   box-shadow: ${({ theme }) => theme.shadows.md};
   padding-inline: 20px;
 `;
@@ -98,8 +98,6 @@ const TextArea = styled.textarea`
   outline: none;
   resize: none;
 
-  background: transparent;
-
   font-size: 16px;
 
   min-height: 24px;
@@ -109,7 +107,7 @@ const TextArea = styled.textarea`
 
   font-family: inherit;
   padding: 12px;
-  background-color: ${({ theme }) => theme.colors.message};
+  background-color: ${({ theme }) => theme.colors.input};
   border-radius: 15px;
   &::placeholder {
     font-size: ${({ theme }) => theme.typography.bodySm.size};
