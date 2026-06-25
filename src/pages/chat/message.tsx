@@ -469,7 +469,7 @@ const MessagePage = () => {
       <StyledMessagePage>
         <ConversationHeader>
           <Link to={PATHS.CHAT.HOME}>
-            <ArrowLeftIcon size={24} className="icon" stroke="#ffff" />
+            <ArrowLeftIcon size={24} className="icon" stroke="#000" />
           </Link>
 
           <LeftContentWrapper>
@@ -486,8 +486,8 @@ const MessagePage = () => {
             </LeftContent>
 
             <RightContent>
-              <PhoneIcon size={24} stroke="#ffff" />
-              <VideoIcon size={24} stroke="#ffff" />
+              <PhoneIcon size={24} stroke="#000" />
+              <VideoIcon size={24} stroke="#000" />
             </RightContent>
           </LeftContentWrapper>
         </ConversationHeader>
@@ -600,7 +600,7 @@ const DateDivider = styled.div`
   margin: 2rem;
   span {
     color: ${({ theme }) => theme.colors.text};
-    background-color: ${({ theme }) => theme.colors.textSecondary};
+    background-color: #F2F7FB;
     padding: 7px;
     border-radius: 8px;
     font-weight: 700;
@@ -627,7 +627,7 @@ const StyledMessagePage = styled.div`
   padding-inline: 20px;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 const ConversationHeader = styled.div`
@@ -644,7 +644,7 @@ const ConversationHeader = styled.div`
   padding-block: 10px;
   padding-inline: 20px;
   height: 90px;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 const LeftContentWrapper = styled.div`
@@ -679,8 +679,11 @@ const LeftContentText = styled.div`
   flex-direction: column;
   gap: 0.2rem;
 
-  p,
   h3 {
+    color: ${({ theme }) => theme.colors.background};
+  }
+
+  p {
     color: ${({ theme }) => theme.colors.textSecondary};
   }
 `;

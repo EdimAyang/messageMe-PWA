@@ -6,6 +6,7 @@ declare module "styled-components" {
       primary: string;
       secondary: string;
       message: string;
+      input: string;
 
       background: string;
       surface: string;

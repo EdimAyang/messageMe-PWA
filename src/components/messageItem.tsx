@@ -115,7 +115,7 @@ const IncomingContent = styled.div`
 const TimestampInside = styled.span<{ $isMine?: boolean }>`
   display: block;
 
-  margin-top: 6px;
+  margin-top: 4px;
 
   text-align: right;
 

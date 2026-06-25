@@ -1,24 +1,19 @@
 import styled from "styled-components";
-import {
-  SearchIcon,
-  PhoneCallIcon,
-  UserCircle2Icon,
-  SettingsIcon,
-  LucideMessageCircleMore,
-} from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import { SwipeableItem } from "@/lib/ui/swipable";
 import { ConversationCard } from "@/components/conversationCard";
 import { PATHS } from "@/routes/paths";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { BottomNav } from "@/components/BottomNav";
 
-
-const Conversations = [
+export const Conversations = [
   {
     image: "/images/headerimg.png",
-    name: "Samantha Smith",
-    lastMsg: "Good morning",
+    name: "Team Batman",
+    lastMsg: "20 members",
     time: "10 min ago",
     unreadMsg: "1",
+    isGroup: true,
   },
   {
     image: "/images/headerimg.png",
@@ -26,6 +21,7 @@ const Conversations = [
     lastMsg: "Send your details",
     time: "1 hour ago",
     unreadMsg: "",
+    isGroup: false,
   },
   {
     image: "/images/headerimg.png",
@@ -33,6 +29,7 @@ const Conversations = [
     lastMsg: "How are doing?",
     time: "2 min ago",
     unreadMsg: "5",
+    isGroup: false,
   },
   {
     image: "/images/headerimg.png",
@@ -40,6 +37,7 @@ const Conversations = [
     lastMsg: "How are doing?",
     time: "2 min ago",
     unreadMsg: "5",
+    isGroup: false,
   },
   {
     image: "/images/headerimg.png",
@@ -47,6 +45,7 @@ const Conversations = [
     lastMsg: "How are doing?",
     time: "2 min ago",
     unreadMsg: "5",
+    isGroup: false,
   },
   {
     image: "/images/headerimg.png",
@@ -54,6 +53,7 @@ const Conversations = [
     lastMsg: "How are doing?",
     time: "2 min ago",
     unreadMsg: "5",
+    isGroup: false,
   },
   {
     image: "/images/headerimg.png",
@@ -61,6 +61,7 @@ const Conversations = [
     lastMsg: "How are doing?",
     time: "2 min ago",
     unreadMsg: "5",
+    isGroup: false,
   },
   {
     image: "/images/headerimg.png",
@@ -68,6 +69,7 @@ const Conversations = [
     lastMsg: "How are doing?",
     time: "2 min ago",
     unreadMsg: "5",
+    isGroup: false,
   },
   {
     image: "/images/headerimg.png",
@@ -75,6 +77,7 @@ const Conversations = [
     lastMsg: "How are doing?",
     time: "2 min ago",
     unreadMsg: "5",
+    isGroup: false,
   },
   {
     image: "/images/headerimg.png",
@@ -82,29 +85,79 @@ const Conversations = [
     lastMsg: "How are doing?",
     time: "22 min ago",
     unreadMsg: "5",
-  },
-];
-
-const Navigation = [
-  {
-    url: PATHS.CHAT.HOME,
-    icon: <LucideMessageCircleMore size={24} />,
-    name: "Message",
+    isGroup: false,
   },
   {
-    url: PATHS.CALLS.LOGS,
-    icon: <PhoneCallIcon size={24} />,
-    name: "Calls",
+    image: "/images/headerimg.png",
+    name: "Nuel Jackson",
+    lastMsg: "How are doing?",
+    time: "22 min ago",
+    unreadMsg: "5",
+    isGroup: false,
   },
   {
-    url: PATHS.CONTACTS.CONTACTlIST,
-    icon: <UserCircle2Icon size={24} />,
-    name: "Contacts",
+    image: "/images/headerimg.png",
+    name: "Nuel Jackson",
+    lastMsg: "How are doing?",
+    time: "22 min ago",
+    unreadMsg: "5",
+    isGroup: false,
   },
   {
-    url: PATHS.SETTINGS.SETTING,
-    icon: <SettingsIcon size={24} />,
-    name: "Settings",
+    image: "/images/headerimg.png",
+    name: "Nuel Jackson",
+    lastMsg: "How are doing?",
+    time: "22 min ago",
+    unreadMsg: "5",
+    isGroup: false,
+  },
+  {
+    image: "/images/headerimg.png",
+    name: "Nuel Jackson",
+    lastMsg: "How are doing?",
+    time: "22 min ago",
+    unreadMsg: "5",
+    isGroup: false,
+  },
+  {
+    image: "/images/headerimg.png",
+    name: "Nuel Jackson",
+    lastMsg: "How are doing?",
+    time: "22 min ago",
+    unreadMsg: "5",
+    isGroup: false,
+  },
+  {
+    image: "/images/headerimg.png",
+    name: "Nuel Jackson",
+    lastMsg: "How are doing?",
+    time: "22 min ago",
+    unreadMsg: "5",
+    isGroup: false,
+  },
+  {
+    image: "/images/headerimg.png",
+    name: "Nuel Jackson",
+    lastMsg: "How are doing?",
+    time: "22 min ago",
+    unreadMsg: "5",
+    isGroup: false,
+  },
+  {
+    image: "/images/headerimg.png",
+    name: "Nuel Jackson",
+    lastMsg: "How are doing?",
+    time: "22 min ago",
+    unreadMsg: "5",
+     isGroup: false,
+  },
+  {
+    image: "/images/headerimg.png",
+    name: "Team NightWing",
+    lastMsg: "4 members",
+    time: "34 min ago",
+    unreadMsg: "5",
+    isGroup: true,
   },
 ];
 
@@ -115,9 +168,12 @@ const HomePage = () => {
       <StyledHomePage>
         <Header>
           <SearchWrapper>
-            <SearchIcon size={24} />
+            <SearchIcon
+              size={24}
+              onClick={() => navigate(PATHS.SEARCH.SEARCH)}
+            />
           </SearchWrapper>
-          <HeaderText>Home</HeaderText>
+          <HeaderText>MessageMe</HeaderText>
           <Avatar>
             <img src="/images/headerimg.png" alt="user image" />
 
@@ -160,7 +216,7 @@ const HomePage = () => {
         <StyledChatList>
           {Conversations.map((c, i) => (
             <SwipeableItem onDelete={() => console.log("deleted")} key={i}>
-              <div onClick={() => navigate("/")}>
+              <Link to={PATHS.CHAT.MESSAGE}>
                 <ConversationCard
                   image={c.image}
                   userName={c.name}
@@ -168,19 +224,11 @@ const HomePage = () => {
                   time={c.time}
                   unreadMsg={c.unreadMsg}
                 />
-              </div>
+              </Link>
             </SwipeableItem>
           ))}
         </StyledChatList>
-
-        <BottomNav>
-          {Navigation.map((nav, i) => (
-            <StyledNavLink to={nav.url} key={i} end>
-              {nav.icon}
-              <p>{nav.name}</p>
-            </StyledNavLink>
-          ))}
-        </BottomNav>
+        <BottomNav />
       </StyledHomePage>
     </>
   );
@@ -188,68 +236,33 @@ const HomePage = () => {
 
 export default HomePage;
 
-const BottomNav = styled.nav`
-  width: 100%;
-  height: 11%;
-  padding-inline: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: ${({ theme }) => theme.colors.background};
-  padding-block: 15px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 3;
-  box-shadow: ${({ theme }) => theme.shadows.md};
-`;
-
-const StyledNavLink = styled(NavLink)`
-  height: 100%;
-  width: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 0.5rem;
-  color: ${({ theme }) => theme.colors.textSecondary};
-
-  text-decoration: none;
-  transition: 0.2s ease;
-
-  &.active {
-    color: ${({ theme }) => theme.colors.secondary};
-    background: ${({ theme }) => `${theme.colors.secondary}15`};
-  }
-`;
-
 const StyledHomePage = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 const Header = styled.div`
   width: 100%;
-  height: 100px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
   top: 2rem;
   background-color: none;
-  color: ${({ theme }) => theme.colors.primary};
-  background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.primary};
   padding-inline: 2rem;
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:30;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
 `;
 
 const SearchWrapper = styled.div`
   border-radius: 50%;
-  border: 1px solid #ffffff;
+  border: 1px solid #000;
   background: transparent;
   width: 35px;
   height: 35px;
@@ -261,7 +274,7 @@ const SearchWrapper = styled.div`
 `;
 
 const HeaderText = styled.h2`
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.background};
 `;
 
 const Avatar = styled.div`
@@ -312,23 +325,19 @@ const Avatar = styled.div`
 // `;
 
 const StyledChatList = styled.section`
-  width: 100%;
-  height: 100%;
-  background-color:${({ theme }) => theme.colors.background} ;
+  background-color: ${({ theme }) => theme.colors.primary};
   padding-inline: 20px;
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 2rem;
-  border-radius: 50px 50px 0 0;
   overflow: auto;
-  padding-bottom: 10rem;
-  padding-top: 20rem;
+  padding-top: 130px;
+  padding-bottom: 130px;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and old Edge */
- 
-
 `;
 
 const OnlineBadge = styled.span`
